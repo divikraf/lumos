@@ -9,7 +9,6 @@ import (
 	"gitlab.com/divikraf/lumos/ziconf"
 	"gitlab.com/divikraf/lumos/zilog"
 	"gitlab.com/divikraf/lumos/zilong"
-	"gitlab.com/divikraf/lumos/zin/zinfx"
 	"go.uber.org/fx"
 )
 
@@ -42,7 +41,6 @@ func RegisterUserRoutes(router *gin.Engine) {
 
 func main() {
 	zilong.App[*Cfg](
-		zinfx.Invoker,
 		UserModule,
 	).Run()
 }
