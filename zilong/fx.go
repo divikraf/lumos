@@ -61,11 +61,7 @@ func KitchenSink[T ziconf.Config]() []fx.Option {
 }
 
 func New[T ziconf.Config](subModules ...fx.Option) []fx.Option {
-	modules := append(
-		KitchenSink[T](),
-		zinfx.Invoker,
-	)
-	return append(modules, subModules...)
+	return append(KitchenSink[T](), subModules...)
 }
 
 func App[T ziconf.Config](modules ...fx.Option) *fx.App {
