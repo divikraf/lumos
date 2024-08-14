@@ -60,6 +60,7 @@ var NewRelicProvider = fx.Provide(newrelicFx)
 func KitchenSink[T ziconf.Config]() []fx.Option {
 	return []fx.Option{
 		ContextProvider,
+		ValidatorProvider,
 		ziconffx.WithConfig[T](),
 		zilogfx.FxLogger,
 		zilogfx.ContextDecorator,

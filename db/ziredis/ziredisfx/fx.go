@@ -37,7 +37,7 @@ type connParams struct {
 	fx.In
 
 	LC        fx.Lifecycle
-	Validator validator.Validate
+	Validator *validator.Validate
 	Logger    *zerolog.Logger
 }
 
