@@ -10,8 +10,8 @@ func WithConfig[T ziconf.Config]() fx.Option {
 		func() T {
 			return ziconf.ReadConfig[T]()
 		},
-		func(x *T) ziconf.Config {
-			return *x
+		func(x T) ziconf.Config {
+			return x
 		},
 	)
 }
