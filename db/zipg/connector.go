@@ -11,6 +11,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/newrelic/go-agent/v3/integrations/nrpq"
 	"github.com/rs/zerolog"
+	"gorm.io/gorm/logger"
 )
 
 // New returns connection creator.
@@ -96,21 +97,9 @@ func (pgc *pgConnector) Connect(ctx context.Context, input Input) (*sqlx.DB, err
 		return nil, errValidate
 	}
 
-	dsn := url.URL{
-		Scheme:   "postgres",
-		User:     url.UserPassword(input.Username, input.Password),
-		Host:     input.HostPort.String(),
-		Path:     input.DatabaseName,
-		RawQuery: input.QueryParams.Encode(),
-	}
+	dsn := fmt.Sprint("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", input.HostPort.Host, input.HostPort.Post, input.Username, input.Password, input.DatabaseName)
 
-	logger := pgc.logger.With().
-		Str("hostport", input.HostPort.String()).
-		Str("dbname", input.DatabaseName).
-		Interface("queryparams", dsn.Query()).
-		Logger()
-
-	sqldb, err := sqlx.Open("nrpostgres", dsn.String())
+	sqldb, err := sqlx.Open("nrpostgres", dsn)
 	if err != nil {
 		logger.Error().Err(err).Msg(err.Error())
 		return nil, err
