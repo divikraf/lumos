@@ -8,6 +8,8 @@ import (
 	"github.com/newrelic/go-agent/v3/integrations/nrzerolog"
 	"github.com/newrelic/go-agent/v3/newrelic"
 	"gitlab.com/divikraf/lumos/db/zimemo/zimemofx"
+	"gitlab.com/divikraf/lumos/db/zipg/zipgfx"
+	"gitlab.com/divikraf/lumos/db/ziredis/ziredisfx"
 	"gitlab.com/divikraf/lumos/ziconf"
 	"gitlab.com/divikraf/lumos/ziconf/ziconffx"
 	"gitlab.com/divikraf/lumos/zilog"
@@ -55,6 +57,8 @@ func KitchenSink[T ziconf.Config]() []fx.Option {
 		zilogfx.ContextDecorator,
 		zilogfx.Provider,
 		NewRelicProvider,
+		zipgfx.Provider,
+		ziredisfx.Provider,
 		zimemofx.Provider,
 		zinfx.Provider,
 	}
