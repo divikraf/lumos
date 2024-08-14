@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/newrelic/go-agent/v3/integrations/nrzerolog"
 	"github.com/newrelic/go-agent/v3/newrelic"
 	"gitlab.com/divikraf/lumos/db/zimemo/zimemofx"
@@ -29,6 +30,13 @@ func contextFx(lc fx.Lifecycle) context.Context {
 // to the [go.uber.org/fx.Lifecycle]. When the fx app is stopped, this cancel
 // function will be called, canceling the context.
 var ContextProvider = fx.Provide(contextFx)
+
+func validatorFx() *validator.Validate {
+	validator := validator.New()
+	return validator
+}
+
+var ValidatorProvider = fx.Provide(validatorFx)
 
 func newrelicFx(lc fx.Lifecycle, config ziconf.Config) *newrelic.Application {
 	nrApp, err := newrelic.NewApplication(

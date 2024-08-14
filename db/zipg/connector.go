@@ -14,7 +14,7 @@ import (
 )
 
 // New returns connection creator.
-func New(validator validator.Validate, logger *zerolog.Logger) *pgConnector {
+func New(validator *validator.Validate, logger *zerolog.Logger) *pgConnector {
 	return &pgConnector{
 		validator: validator,
 		logger:    logger,
@@ -48,7 +48,7 @@ type Input struct {
 }
 
 type pgConnector struct {
-	validator validator.Validate
+	validator *validator.Validate
 	logger    *zerolog.Logger
 	conns     *sync.Map
 }

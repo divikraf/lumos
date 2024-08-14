@@ -14,7 +14,7 @@ import (
 )
 
 // New returns connection creator.
-func New(validator validator.Validate, logger *zerolog.Logger) *connector {
+func New(validator *validator.Validate, logger *zerolog.Logger) *connector {
 	return &connector{
 		validator: validator,
 		logger:    logger,
@@ -52,7 +52,7 @@ type ConnectionConfig struct {
 }
 
 type connector struct {
-	validator validator.Validate
+	validator *validator.Validate
 	logger    *zerolog.Logger
 	conns     *sync.Map
 }
