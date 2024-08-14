@@ -25,7 +25,7 @@ type LogConfig struct {
 	Level string `json:"level"`
 }
 
-func ReadConfig[T Config]() Config {
+func ReadConfig[T Config]() T {
 	var cfg T
 	f := func() error {
 		viper.AddConfigPath(".")

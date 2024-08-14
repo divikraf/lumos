@@ -6,7 +6,7 @@ import (
 )
 
 func WithConfig[T ziconf.Config]() fx.Option {
-	return fx.Provide(func() ziconf.Config {
+	return fx.Provide(func() T {
 		return ziconf.ReadConfig[T]()
 	})
 }
