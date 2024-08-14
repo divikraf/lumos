@@ -170,12 +170,15 @@ github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd h1:TRLaZ9cD/w
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/reflect2 v1.0.2 h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9Gz0M=
 github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
+github.com/newrelic/go-agent/v3 v3.3.0/go.mod h1:H28zDNUC0U/b7kLoY4EFOhuth10Xu/9dchozUiOseQQ=
 github.com/newrelic/go-agent/v3 v3.34.0 h1:jhtX+YUrAh2ddgPGIixMYq4+nCBrEN4ETGyi2h/zWJw=
 github.com/newrelic/go-agent/v3 v3.34.0/go.mod h1:VNsi+XA7YsgF4fHES8l/U6OhAHhU3IdLDFkB/wpevvA=
 github.com/newrelic/go-agent/v3/integrations/nrgin v1.3.1 h1:JoIIS37S/tW/6Y/5cGInNA7ngfd2lGsfX0HYh82UOPk=
 github.com/newrelic/go-agent/v3/integrations/nrgin v1.3.1/go.mod h1:/EjSYMXsMO34+imRoQlPU5hFUlP+u/dwowF+OKMw8TQ=
 github.com/newrelic/go-agent/v3/integrations/nrpgx v1.0.1 h1:egYr79kr3iYTTWopsEFGYsAFWKFxsp5CzHWZtvPu8+g=
 github.com/newrelic/go-agent/v3/integrations/nrpgx v1.0.1/go.mod h1:ADbCvSUodSoo2zPr41dsOVwZoawOPmY2WiXDeBCYrgQ=
+github.com/newrelic/go-agent/v3/integrations/nrpq v1.1.1 h1:HlVcLXw7ZZPjeRx3lQUAN8qfpJVDmuq4L237M1+PS8A=
+github.com/newrelic/go-agent/v3/integrations/nrpq v1.1.1/go.mod h1:UvI7Z0Dok/36E44UiTysh9HQZudDdpiChbe3+eqSB0I=
 github.com/newrelic/go-agent/v3/integrations/nrredis-v9 v1.0.0 h1:jPjdL6i69gAXeOHJH/GCmLXxrzMl0J19wE5H1U3FdGE=
 github.com/newrelic/go-agent/v3/integrations/nrredis-v9 v1.0.0/go.mod h1:oRTLRKiOcFsOJZgioSMRUQ54vUMomoQkoQW8wql4B4s=
 github.com/newrelic/go-agent/v3/integrations/nrzerolog v1.0.0 h1:NungaEEHdRKwWlm+OrtUk46uxTFusOsY1sCRHVi//Xw=

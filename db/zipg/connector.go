@@ -9,7 +9,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	"github.com/jmoiron/sqlx"
-	_ "github.com/newrelic/go-agent/v3/integrations/nrpgx"
+	_ "github.com/newrelic/go-agent/v3/integrations/nrpq"
 	"github.com/rs/zerolog"
 )
 
@@ -110,7 +110,7 @@ func (pgc *pgConnector) Connect(ctx context.Context, input Input) (*sqlx.DB, err
 		Interface("queryparams", dsn.Query()).
 		Logger()
 
-	sqldb, err := sqlx.Open("nrpgx", dsn.String())
+	sqldb, err := sqlx.Open("nrpostgres", dsn.String())
 	if err != nil {
 		logger.Error().Err(err).Msg(err.Error())
 		return nil, err
