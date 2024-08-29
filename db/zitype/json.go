@@ -1,4 +1,4 @@
-package zipg
+package zitype
 
 import (
 	"database/sql/driver"
