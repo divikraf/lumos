@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/newrelic/go-agent/v3/integrations/nrzerolog"
 	"github.com/newrelic/go-agent/v3/newrelic"
 	"gitlab.com/divikraf/lumos/db/zimemo/zimemofx"
 	"gitlab.com/divikraf/lumos/db/zipg/zipgfx"
@@ -42,7 +41,6 @@ func newrelicFx(lc fx.Lifecycle, config ziconf.Config) *newrelic.Application {
 	nrApp, err := newrelic.NewApplication(
 		newrelic.ConfigAppName(config.GetService().Name),
 		newrelic.ConfigLicense(config.GetNewRelic().LicenseKey),
-		nrzerolog.ConfigLogger(&zilog.DefaultLogger.Logger),
 		newrelic.ConfigInfoLogger(os.Stdout),
 		newrelic.ConfigAppLogForwardingEnabled(true),
 	)

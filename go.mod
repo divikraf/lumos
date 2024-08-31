@@ -5,6 +5,10 @@ go 1.22.2
 require (
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/newrelic/go-agent/v3 v3.34.0
+	github.com/newrelic/go-agent/v3/integrations/nrgin v1.3.1
+	github.com/newrelic/go-agent/v3/integrations/nrmysql v1.2.2
+	github.com/newrelic/go-agent/v3/integrations/nrpq v1.1.1
+	github.com/newrelic/go-agent/v3/integrations/nrredis-v9 v1.0.0
 	github.com/redis/go-redis/v9 v9.6.1
 )
 
@@ -21,16 +25,6 @@ require (
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
-	github.com/jackc/fake v0.0.0-20150926172116-812a484cc733 // indirect
-	github.com/jackc/pgconn v1.14.3 // indirect
-	github.com/jackc/pgio v1.0.0 // indirect
-	github.com/jackc/pgpassfile v1.0.0 // indirect
-	github.com/jackc/pgproto3/v2 v2.3.3 // indirect
-	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
-	github.com/jackc/pgtype v1.14.0 // indirect
-	github.com/jackc/pgx v3.6.2+incompatible // indirect
-	github.com/jackc/pgx/v4 v4.18.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.7 // indirect
 	github.com/lib/pq v1.10.9 // indirect
@@ -60,8 +54,8 @@ require (
 require (
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/gin-gonic/gin v1.10.0
-	github.com/go-playground/locales v0.14.1 // indirect
-	github.com/go-playground/universal-translator v0.18.1 // indirect
+	github.com/go-playground/locales v0.14.1
+	github.com/go-playground/universal-translator v0.18.1
 	github.com/go-playground/validator/v10 v10.22.0
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7
@@ -69,12 +63,6 @@ require (
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/newrelic/go-agent/v3/integrations/nrgin v1.3.1
-	github.com/newrelic/go-agent/v3/integrations/nrmysql v1.2.2
-	github.com/newrelic/go-agent/v3/integrations/nrpgx v1.0.1
-	github.com/newrelic/go-agent/v3/integrations/nrpq v1.1.1
-	github.com/newrelic/go-agent/v3/integrations/nrredis-v9 v1.0.0
-	github.com/newrelic/go-agent/v3/integrations/nrzerolog v1.0.0
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rs/zerolog v1.33.0
 	github.com/spf13/viper v1.19.0
@@ -82,7 +70,7 @@ require (
 	golang.org/x/crypto v0.23.0 // indirect
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
-	golang.org/x/text v0.15.0 // indirect
+	golang.org/x/text v0.15.0
 	google.golang.org/grpc v1.62.1 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
 )
