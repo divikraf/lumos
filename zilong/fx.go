@@ -16,6 +16,7 @@ import (
 	"gitlab.com/divikraf/lumos/zilog"
 	"gitlab.com/divikraf/lumos/zilog/zilogfx"
 	"gitlab.com/divikraf/lumos/zin/zinfx"
+	"gitlab.com/divikraf/lumos/zivalidator/zivalidatorfx"
 	"go.uber.org/fx"
 )
 
@@ -69,6 +70,7 @@ func KitchenSink[T ziconf.Config]() []fx.Option {
 		zimysqlfx.Provider,
 		ziredisfx.Provider,
 		zimemofx.Provider,
+		zivalidatorfx.Provider,
 		zinfx.Provider,
 	}
 }
