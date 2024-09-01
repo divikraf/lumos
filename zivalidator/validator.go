@@ -8,8 +8,8 @@ import (
 )
 
 type ValidationResult struct {
-	Message     string `json:"message"`
-	FieldErrors []FieldError
+	Message     string       `json:"message"`
+	FieldErrors []FieldError `json:"field_errors"`
 }
 
 type FieldError struct {
