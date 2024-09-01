@@ -8,6 +8,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/newrelic/go-agent/v3/newrelic"
 	"gitlab.com/divikraf/lumos/db/zimemo/zimemofx"
+	"gitlab.com/divikraf/lumos/db/zimysql/zimysqlfx"
 	"gitlab.com/divikraf/lumos/db/zipg/zipgfx"
 	"gitlab.com/divikraf/lumos/db/ziredis/ziredisfx"
 	"gitlab.com/divikraf/lumos/ziconf"
@@ -65,6 +66,7 @@ func KitchenSink[T ziconf.Config]() []fx.Option {
 		zilogfx.Provider,
 		NewRelicProvider,
 		zipgfx.Provider,
+		zimysqlfx.Provider,
 		ziredisfx.Provider,
 		zimemofx.Provider,
 		zinfx.Provider,
