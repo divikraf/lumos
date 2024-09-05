@@ -27,6 +27,8 @@ type ZiMemoization interface {
 	// If no cache found then it will create new prepared statement, save into cache, and then returns it.
 	PrepareNamed(ctx context.Context, db *sqlx.DB, query string) (statement, error)
 	// Purge closes all cached statements.
+	PrepareTx(ctx context.Context, tx *sqlx.Tx, query string) (statement, error)
+	PrepareTxNamed(ctx context.Context, tx *sqlx.Tx, query string) (statement, error)
 	Purge()
 }
 
@@ -126,6 +128,56 @@ func (impl *ziMemoizationImpl) PrepareNamed(ctx context.Context, db *sqlx.DB, qu
 
 	// create new named statement from query
 	namedStmt, err := db.PrepareNamedContext(ctx, query)
+	if err != nil {
+		return cached, err
+	}
+
+	// memo it
+	cached = statement{
+		key:       cached.key,
+		Stmt:      namedStmt.Stmt,
+		NamedStmt: namedStmt,
+		Query:     query,
+	}
+	impl.storage.Add(cached.key, cached)
+	impl.nrApp.RecordCustomMetric(metricName, 1)
+
+	return cached, err
+}
+
+// PrepareTx implements ZiMemoization.
+func (impl *ziMemoizationImpl) PrepareTx(ctx context.Context, tx *sqlx.Tx, query string) (statement, error) {
+	cached, err := impl.getCachedStmt(query)
+	if err == nil {
+		return cached, nil
+	}
+
+	stmt, err := tx.PreparexContext(ctx, query)
+	if err != nil {
+		return cached, err
+	}
+
+	cached = statement{
+		key:       cached.key,
+		Stmt:      stmt,
+		NamedStmt: nil,
+		Query:     query,
+	}
+	impl.storage.Add(cached.key, cached)
+	impl.nrApp.RecordCustomMetric(metricName, 1)
+
+	return cached, err
+}
+
+// PrepareTxNamed implements ZiMemoization.
+func (impl *ziMemoizationImpl) PrepareTxNamed(ctx context.Context, tx *sqlx.Tx, query string) (statement, error) {
+	cached, err := impl.getCachedStmt(query)
+	if err == nil {
+		return cached, nil
+	}
+
+	// create new named statement from query
+	namedStmt, err := tx.PrepareNamedContext(ctx, query)
 	if err != nil {
 		return cached, err
 	}
