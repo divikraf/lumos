@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/divikraf/lumos/ziconf"
+	"github.com/divikraf/lumos/zilog"
+	"github.com/divikraf/lumos/zilong"
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent/v3/integrations/nrgin"
-	"gitlab.com/divikraf/lumos/ziconf"
-	"gitlab.com/divikraf/lumos/zilog"
-	"gitlab.com/divikraf/lumos/zilong"
 	"go.uber.org/fx"
 )
 

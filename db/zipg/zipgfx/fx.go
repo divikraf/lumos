@@ -3,10 +3,10 @@ package zipgfx
 import (
 	"context"
 
+	"github.com/divikraf/lumos/db/zipg"
 	"github.com/go-playground/validator/v10"
 	"github.com/jmoiron/sqlx"
 	"github.com/rs/zerolog"
-	"gitlab.com/divikraf/lumos/db/zipg"
 	"go.uber.org/fx"
 )
 

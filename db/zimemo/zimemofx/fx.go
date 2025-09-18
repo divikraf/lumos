@@ -1,8 +1,8 @@
 package zimemofx
 
 import (
+	"github.com/divikraf/lumos/db/zimemo"
 	"github.com/newrelic/go-agent/v3/newrelic"
-	"gitlab.com/divikraf/lumos/db/zimemo"
 	"go.uber.org/fx"
 )
 

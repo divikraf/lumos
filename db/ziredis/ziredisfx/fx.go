@@ -3,10 +3,10 @@ package ziredisfx
 import (
 	"context"
 
+	"github.com/divikraf/lumos/db/ziredis"
 	"github.com/go-playground/validator/v10"
 	"github.com/redis/go-redis/v9"
 	"github.com/rs/zerolog"
-	"gitlab.com/divikraf/lumos/db/ziredis"
 	"go.uber.org/fx"
 )
 

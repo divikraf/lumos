@@ -3,10 +3,10 @@ package zimysqlfx
 import (
 	"context"
 
+	"github.com/divikraf/lumos/db/zimysql"
 	"github.com/go-playground/validator/v10"
 	"github.com/jmoiron/sqlx"
 	"github.com/rs/zerolog"
-	"gitlab.com/divikraf/lumos/db/zimysql"
 	"go.uber.org/fx"
 )
 

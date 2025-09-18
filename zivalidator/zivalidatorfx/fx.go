@@ -1,7 +1,7 @@
 package zivalidatorfx
 
 import (
-	"gitlab.com/divikraf/lumos/zivalidator"
+	"github.com/divikraf/lumos/zivalidator"
 	"go.uber.org/fx"
 )
 

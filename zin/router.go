@@ -5,12 +5,12 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/divikraf/lumos/ziconf"
+	"github.com/divikraf/lumos/zilog"
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent/v3/integrations/nrgin"
 	"github.com/newrelic/go-agent/v3/newrelic"
 	"github.com/rs/zerolog"
-	"gitlab.com/divikraf/lumos/ziconf"
-	"gitlab.com/divikraf/lumos/zilog"
 	"go.uber.org/fx"
 )
 

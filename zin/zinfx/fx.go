@@ -1,7 +1,7 @@
 package zinfx
 
 import (
-	"gitlab.com/divikraf/lumos/zin"
+	"github.com/divikraf/lumos/zin"
 	"go.uber.org/fx"
 )
 

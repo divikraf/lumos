@@ -3,13 +3,13 @@ package zivalidator
 import (
 	"context"
 
+	"github.com/divikraf/lumos/i18n"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/id"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	en_translations "github.com/go-playground/validator/v10/translations/en"
 	id_translations "github.com/go-playground/validator/v10/translations/id"
-	"gitlab.com/divikraf/lumos/i18n"
 	"golang.org/x/text/language"
 )
 

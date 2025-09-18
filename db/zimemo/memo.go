@@ -7,10 +7,10 @@ import (
 	"errors"
 	"strings"
 
+	"github.com/divikraf/lumos/zilog"
 	lru "github.com/hashicorp/golang-lru/v2"
 	"github.com/jmoiron/sqlx"
 	"github.com/newrelic/go-agent/v3/newrelic"
-	"gitlab.com/divikraf/lumos/zilog"
 )
 
 var (

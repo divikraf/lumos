@@ -1,7 +1,7 @@
 package ziconffx
 
 import (
-	"gitlab.com/divikraf/lumos/ziconf"
+	"github.com/divikraf/lumos/ziconf"
 	"go.uber.org/fx"
 )
 

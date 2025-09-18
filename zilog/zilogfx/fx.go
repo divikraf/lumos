@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/divikraf/lumos/zilog"
 	"github.com/rs/zerolog"
-	"gitlab.com/divikraf/lumos/zilog"
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxevent"
 )

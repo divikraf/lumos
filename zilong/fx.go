@@ -3,16 +3,16 @@ package zilong
 import (
 	"context"
 
+	"github.com/divikraf/lumos/db/zimemo/zimemofx"
+	"github.com/divikraf/lumos/db/zimysql/zimysqlfx"
+	"github.com/divikraf/lumos/db/zipg/zipgfx"
+	"github.com/divikraf/lumos/db/ziredis/ziredisfx"
+	"github.com/divikraf/lumos/ziconf"
+	"github.com/divikraf/lumos/ziconf/ziconffx"
+	"github.com/divikraf/lumos/zilog/zilogfx"
+	"github.com/divikraf/lumos/zin/zinfx"
+	"github.com/divikraf/lumos/zivalidator/zivalidatorfx"
 	"github.com/go-playground/validator/v10"
-	"gitlab.com/divikraf/lumos/db/zimemo/zimemofx"
-	"gitlab.com/divikraf/lumos/db/zimysql/zimysqlfx"
-	"gitlab.com/divikraf/lumos/db/zipg/zipgfx"
-	"gitlab.com/divikraf/lumos/db/ziredis/ziredisfx"
-	"gitlab.com/divikraf/lumos/ziconf"
-	"gitlab.com/divikraf/lumos/ziconf/ziconffx"
-	"gitlab.com/divikraf/lumos/zilog/zilogfx"
-	"gitlab.com/divikraf/lumos/zin/zinfx"
-	"gitlab.com/divikraf/lumos/zivalidator/zivalidatorfx"
 	"go.uber.org/fx"
 )
 

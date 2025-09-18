@@ -1,4 +1,4 @@
-module gitlab.com/divikraf/lumos
+module github.com/divikraf/lumos
 
 go 1.22.2
 

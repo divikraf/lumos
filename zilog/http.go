@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/divikraf/lumos/zilog/hook"
 	"github.com/gin-gonic/gin"
 	"github.com/newrelic/go-agent/v3/integrations/nrgin"
 	"github.com/rs/zerolog"
-	"gitlab.com/divikraf/lumos/zilog/hook"
 )
 
 // HTTPLogMiddlewareOption is a functional option to customize
