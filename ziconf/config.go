@@ -6,14 +6,9 @@ import (
 )
 
 type Config interface {
-	GetNewRelic() NewRelicConfig
 	GetService() ServiceConfig
 	GetLog() LogConfig
 	GetHttpPort() string
-}
-
-type NewRelicConfig struct {
-	LicenseKey string `json:"license_key"`
 }
 
 type ServiceConfig struct {

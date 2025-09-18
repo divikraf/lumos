@@ -46,10 +46,9 @@ func main() {
 }
 
 type Cfg struct {
-	Service  ziconf.ServiceConfig  `json:"service"`
-	NewRelic ziconf.NewRelicConfig `json:"newrelic"`
-	Log      ziconf.LogConfig      `json:"log"`
-	Http     HttpConfig            `json:"http"`
+	Service ziconf.ServiceConfig `json:"service"`
+	Log     ziconf.LogConfig     `json:"log"`
+	Http    HttpConfig           `json:"http"`
 }
 
 // GetHttpPort implements ziconf.Config.
@@ -60,11 +59,6 @@ func (c *Cfg) GetHttpPort() string {
 // GetLog implements ziconf.Config.
 func (c *Cfg) GetLog() ziconf.LogConfig {
 	return c.Log
-}
-
-// GetNewRelic implements ziconf.Config.
-func (c *Cfg) GetNewRelic() ziconf.NewRelicConfig {
-	return c.NewRelic
 }
 
 // GetService implements ziconf.Config.

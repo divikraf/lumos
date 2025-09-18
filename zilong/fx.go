@@ -2,18 +2,14 @@ package zilong
 
 import (
 	"context"
-	"os"
-	"time"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/newrelic/go-agent/v3/newrelic"
 	"gitlab.com/divikraf/lumos/db/zimemo/zimemofx"
 	"gitlab.com/divikraf/lumos/db/zimysql/zimysqlfx"
 	"gitlab.com/divikraf/lumos/db/zipg/zipgfx"
 	"gitlab.com/divikraf/lumos/db/ziredis/ziredisfx"
 	"gitlab.com/divikraf/lumos/ziconf"
 	"gitlab.com/divikraf/lumos/ziconf/ziconffx"
-	"gitlab.com/divikraf/lumos/zilog"
 	"gitlab.com/divikraf/lumos/zilog/zilogfx"
 	"gitlab.com/divikraf/lumos/zin/zinfx"
 	"gitlab.com/divikraf/lumos/zivalidator/zivalidatorfx"
@@ -39,24 +35,6 @@ func validatorFx() *validator.Validate {
 
 var ValidatorProvider = fx.Provide(validatorFx)
 
-func newrelicFx(lc fx.Lifecycle, config ziconf.Config) *newrelic.Application {
-	nrApp, err := newrelic.NewApplication(
-		newrelic.ConfigAppName(config.GetService().Name),
-		newrelic.ConfigLicense(config.GetNewRelic().LicenseKey),
-		newrelic.ConfigInfoLogger(os.Stdout),
-		newrelic.ConfigAppLogForwardingEnabled(true),
-	)
-	if err != nil {
-		zilog.DefaultLogger.Fatal().Err(err).Msg("fail to init new relic application")
-	}
-	lc.Append(fx.StopHook(func() {
-		nrApp.Shutdown(3 * time.Second)
-	}))
-	return nrApp
-}
-
-var NewRelicProvider = fx.Provide(newrelicFx)
-
 func KitchenSink[T ziconf.Config]() []fx.Option {
 	return []fx.Option{
 		ContextProvider,
@@ -65,7 +43,6 @@ func KitchenSink[T ziconf.Config]() []fx.Option {
 		zilogfx.FxLogger,
 		zilogfx.ContextDecorator,
 		zilogfx.Provider,
-		NewRelicProvider,
 		zipgfx.Provider,
 		zimysqlfx.Provider,
 		ziredisfx.Provider,
