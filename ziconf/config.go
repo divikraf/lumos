@@ -1,16 +1,18 @@
 package ziconf
 
 import (
+	"github.com/divikraf/lumos/zitelemetry/observe"
 	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/viper"
 )
 
 type Config interface {
 	GetService() ServiceConfig
+	GetEnvironment() string
 	GetLog() LogConfig
 	GetHttpPort() string
+	GetTelemetry() observe.Config
 }
-
 type ServiceConfig struct {
 	Name string `json:"name"`
 	Code string `json:"code"`

@@ -9,7 +9,6 @@ import (
 
 	"github.com/divikraf/lumos/zilog/hook"
 	"github.com/gin-gonic/gin"
-	"github.com/newrelic/go-agent/v3/integrations/nrgin"
 	"github.com/rs/zerolog"
 )
 
@@ -68,7 +67,6 @@ type HTTPLogMiddlewareCfg struct {
 // HTTPLogMiddleware embeds zerolog.Logger into context.
 func HTTPLogMiddleware(opts ...HTTPLogMiddlewareOption) func(c *gin.Context) {
 	return func(c *gin.Context) {
-		txn := nrgin.Transaction(c)
 		r := c.Request
 		w := c.Writer
 		cfg := HTTPLogMiddlewareCfg{
@@ -79,7 +77,7 @@ func HTTPLogMiddleware(opts ...HTTPLogMiddlewareOption) func(c *gin.Context) {
 			o.Pre(&cfg, r)
 		}
 		rCtx := r.Context()
-		newCtx, _ := NewContext(rCtx, hook.NewHTTPPath(r.URL.EscapedPath()), hook.NewRelicRecorderHook(txn))
+		newCtx, _ := NewContext(rCtx, hook.NewHTTPPath(r.URL.EscapedPath()), hook.NewOpenTelemetryHook())
 
 		c.Request = c.Request.WithContext(newCtx)
 

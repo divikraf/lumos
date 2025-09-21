@@ -1,9 +1,0 @@
-service:
-  name: "example"
-  code: "example-code"
-newrelic:
-  license_key: "40479b19b2ab3b1ce9de95c5b771e1a4FFFFNRAL"
-log:
-  level: "DEBUG"
-http:
-  port: ":8090"

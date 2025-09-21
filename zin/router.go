@@ -8,21 +8,25 @@ import (
 	"github.com/divikraf/lumos/ziconf"
 	"github.com/divikraf/lumos/zilog"
 	"github.com/gin-gonic/gin"
-	"github.com/newrelic/go-agent/v3/integrations/nrgin"
-	"github.com/newrelic/go-agent/v3/newrelic"
 	"github.com/rs/zerolog"
+	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
+	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 )
 
 type InitRouterParams struct {
 	fx.In
-	NrApp *newrelic.Application
+	Config         ziconf.Config
+	TracerProvider trace.TracerProvider
+	SkipPaths      []string `group:"http-metrics-skip-paths"`
 }
 
 func RegiterRouter(params InitRouterParams) *gin.Engine {
 	router := gin.New()
-	router.Use(nrgin.Middleware(params.NrApp))
+	router.Use(otelgin.Middleware(params.Config.GetService().Name))
 	router.Use(zilog.HTTPLogMiddleware(zilog.WithLogHTTPRequest(), zilog.WithLogHTTPResponse()))
+	// Use skip paths from FX groups
+	router.Use(httpMetricsMiddlewareWithSkipPaths(params.SkipPaths))
 	router.Use(gin.Recovery())
 
 	return router

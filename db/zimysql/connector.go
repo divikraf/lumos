@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	_ "github.com/newrelic/go-agent/v3/integrations/nrmysql"
 	"github.com/rs/zerolog"
 )
 
@@ -112,7 +112,7 @@ func (myc *mysqlConnector) Connect(ctx context.Context, input Input) (*sqlx.DB, 
 		Interface("queryparams", queryParams).
 		Logger()
 
-	sqldb, err := sqlx.Open("nrmysql", dsn)
+	sqldb, err := sqlx.Open("mysql", dsn)
 	if err != nil {
 		logger.Error().Err(err).Msg(err.Error())
 		return nil, err

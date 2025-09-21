@@ -9,7 +9,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	"github.com/jmoiron/sqlx"
-	_ "github.com/newrelic/go-agent/v3/integrations/nrpq"
+	_ "github.com/lib/pq"
 	"github.com/rs/zerolog"
 )
 
@@ -103,7 +103,7 @@ func (pgc *pgConnector) Connect(ctx context.Context, input Input) (*sqlx.DB, err
 
 	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", input.HostPort.Host, input.HostPort.Post, input.Username, input.Password, input.DatabaseName)
 
-	sqldb, err := sqlx.Open("nrpostgres", dsn)
+	sqldb, err := sqlx.Open("postgres", dsn)
 	if err != nil {
 		logger.Error().Err(err).Msg(err.Error())
 		return nil, err

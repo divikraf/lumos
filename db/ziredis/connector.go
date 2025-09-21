@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
-	nrredis "github.com/newrelic/go-agent/v3/integrations/nrredis-v9"
 	"github.com/redis/go-redis/v9"
 	"github.com/rs/zerolog"
 )
@@ -128,8 +127,6 @@ func (rc *connector) ConnectSingle(ctx context.Context, input InputSingle) (*red
 	}
 	cl := redis.NewClient(opt)
 
-	cl.AddHook(nrredis.NewHook(opt))
-
 	var stor redis.UniversalClient = cl
 	rc.conns.Store(input.HostPort.String(), stor)
 	return cl, nil
@@ -175,8 +172,6 @@ func (c *connector) ConnectCluster(ctx context.Context, input InputCluster) (*re
 	}
 
 	cl := redis.NewClusterClient(opt)
-
-	cl.AddHook(nrredis.NewHook(nil))
 
 	var stor redis.UniversalClient = cl
 	c.conns.Store(strings.Join(multiHostPort(input.HostPorts).Strings(), ","), stor)

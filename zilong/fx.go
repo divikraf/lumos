@@ -3,7 +3,6 @@ package zilong
 import (
 	"context"
 
-	"github.com/divikraf/lumos/db/zimemo/zimemofx"
 	"github.com/divikraf/lumos/db/zimysql/zimysqlfx"
 	"github.com/divikraf/lumos/db/zipg/zipgfx"
 	"github.com/divikraf/lumos/db/ziredis/ziredisfx"
@@ -11,6 +10,8 @@ import (
 	"github.com/divikraf/lumos/ziconf/ziconffx"
 	"github.com/divikraf/lumos/zilog/zilogfx"
 	"github.com/divikraf/lumos/zin/zinfx"
+	"github.com/divikraf/lumos/zitelemetry/observe/observefx"
+	"github.com/divikraf/lumos/zitelemetry/revelio/reveliofx"
 	"github.com/divikraf/lumos/zivalidator/zivalidatorfx"
 	"github.com/go-playground/validator/v10"
 	"go.uber.org/fx"
@@ -40,13 +41,15 @@ func KitchenSink[T ziconf.Config]() []fx.Option {
 		ContextProvider,
 		ValidatorProvider,
 		ziconffx.WithConfig[T](),
+		observefx.Module,
+		reveliofx.DefaultScopeProvider,
+		reveliofx.MeterProviderProvider,
 		zilogfx.FxLogger,
 		zilogfx.ContextDecorator,
 		zilogfx.Provider,
 		zipgfx.Provider,
 		zimysqlfx.Provider,
 		ziredisfx.Provider,
-		zimemofx.Provider,
 		zivalidatorfx.Provider,
 		zinfx.Provider,
 	}

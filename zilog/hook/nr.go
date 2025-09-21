@@ -1,28 +1,32 @@
 package hook
 
 import (
-	"github.com/newrelic/go-agent/v3/integrations/logcontext"
-	"github.com/newrelic/go-agent/v3/newrelic"
+	"context"
+
 	"github.com/rs/zerolog"
+	"go.opentelemetry.io/otel/trace"
 )
 
-// NewRelicRecorderHook is a hook that calls to NewRelic log metric so that APM page
-// displays more informational data about log calls.
-func NewRelicRecorderHook(txn *newrelic.Transaction) zerolog.Hook {
+// NewOpenTelemetryHook creates a hook that adds OpenTelemetry trace context to logs
+func NewOpenTelemetryHook() zerolog.Hook {
 	return zerolog.HookFunc(
 		func(e *zerolog.Event, level zerolog.Level, message string) {
-			lmd := txn.GetLinkingMetadata()
-			e.Str(logcontext.KeyEntityName, lmd.EntityName)
-			e.Str(logcontext.KeyEntityGUID, lmd.EntityGUID)
-			e.Str(logcontext.KeyEntityType, lmd.EntityType)
-			e.Str(logcontext.KeyHostname, lmd.Hostname)
-
-			data := newrelic.LogData{
-				Severity: level.String(),
-				Message:  message,
+			// Add OpenTelemetry trace context to logs
+			span := trace.SpanFromContext(context.Background())
+			if span.IsRecording() {
+				spanCtx := span.SpanContext()
+				if spanCtx.IsValid() {
+					e.Str("trace_id", spanCtx.TraceID().String())
+					e.Str("span_id", spanCtx.SpanID().String())
+					e.Str("trace_flags", spanCtx.TraceFlags().String())
+				}
 			}
-
-			txn.RecordLog(data)
 		},
 	)
+}
+
+// NewRelicRecorderHook is deprecated - use NewOpenTelemetryHook instead
+// Kept for backward compatibility during migration
+func NewRelicRecorderHook(txn interface{}) zerolog.Hook {
+	return NewOpenTelemetryHook()
 }
