@@ -10,15 +10,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/rs/zerolog"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
-	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 )
 
 type InitRouterParams struct {
 	fx.In
-	Config         ziconf.Config
-	TracerProvider trace.TracerProvider
-	SkipPaths      []string `group:"http-metrics-skip-paths"`
+	Config    ziconf.Config
+	SkipPaths []string `group:"http-metrics-skip-paths"`
 }
 
 func RegiterRouter(params InitRouterParams) *gin.Engine {
